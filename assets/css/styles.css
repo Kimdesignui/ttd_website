@@ -62,15 +62,6 @@ img {
   padding: 0 12px 12px;
 }
 
-@media (min-width: 861px) {
-  body:not(.home-page):not(.products-page) .container,
-  body:not(.home-page):not(.products-page) .container-xl {
-    max-width: 1280px;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
 .nav-wrap {
   position: relative;
   min-height: 81px;
