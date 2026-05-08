@@ -1219,6 +1219,15 @@ main section {
   padding-right: 4px;
 }
 
+.news-related-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.news-related-list::-webkit-scrollbar-thumb {
+  background: rgba(138, 150, 174, 0.55);
+  border-radius: 999px;
+}
+
 .news-related-item {
   display: flex;
   gap: 14px;
@@ -1823,6 +1832,11 @@ main section {
 
   .news-inline-form .btn {
     width: 100%;
+  }
+
+  .news-related-list {
+    overflow: visible;
+    padding-right: 0;
   }
 }
 
