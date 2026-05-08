@@ -849,17 +849,20 @@ main section {
 
 .site-footer .contact-list li {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
   color: #566175;
   font-size: 0.875rem;
+  line-height: 1.35;
 }
 
 .site-footer .contact-list i {
   color: #0ea5e9;
   font-size: 1.2em;
-  margin-top: 0.08rem;
+  margin-top: 0;
+  width: 1.2rem;
+  text-align: center;
 }
 
 .site-footer .contact-list strong {
@@ -873,6 +876,7 @@ main section {
 .quick-links a {
   color: #526075;
   font-size: 0.875rem;
+  line-height: 1.35;
   text-decoration: none;
 }
 
@@ -1001,6 +1005,53 @@ main section {
   gap: 32px;
 }
 
+.cert-carousel {
+  margin-top: 32px;
+}
+
+.cert-scroller {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding-bottom: 12px;
+}
+
+.cert-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.cert-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - (24px * 3)) / 4);
+  gap: 24px;
+}
+
+.cert-track .cert-item {
+  scroll-snap-align: start;
+}
+
+.cert-scrollbar {
+  position: relative;
+  width: min(420px, 42%);
+  height: 8px;
+  margin: 10px auto 0;
+  border-radius: 999px;
+  background: rgba(129, 140, 160, 0.26);
+  overflow: hidden;
+}
+
+.cert-scrollbar-thumb {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 25%;
+  border-radius: inherit;
+  background: rgba(98, 109, 128, 0.82);
+  transform: translateX(0);
+  transition: transform 0.18s ease, width 0.18s ease;
+}
+
 .cert-item {
   background: var(--glass);
   border: 1px solid var(--line);
@@ -1089,10 +1140,11 @@ main section {
 
 .news-hero-inner h1 {
   margin: 0;
-  font-size: clamp(34px, 4.2vw, 46px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: #181c23;
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0b58b8;
 }
 
 .news-hero-inner p {
@@ -1111,10 +1163,11 @@ main section {
 }
 
 .news-section-title {
-  font-size: clamp(24px, 2.6vw, 32px);
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.2;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #181c23;
+  color: #0b58b8;
 }
 
 .news-section-link {
@@ -1126,8 +1179,6 @@ main section {
 .news-feature-card {
   overflow: hidden;
   border-radius: 12px;
-  background: rgba(245, 247, 252, 0.9);
-  box-shadow: 0 24px 50px -28px rgba(90, 114, 156, 0.42);
 }
 
 .news-main-grid {
@@ -1464,6 +1515,7 @@ main section {
   line-height: 1.15;
   font-weight: 800;
   letter-spacing: -0.028em;
+  color: #48629a;
 }
 
 .news-detail-hero p {
@@ -1558,6 +1610,39 @@ main section {
   margin: 0 0 12px;
   font-size: 18px;
   font-weight: 700;
+  color: #48629a;
+}
+
+.product-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.product-catalog-card {
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: rgba(245, 247, 252, 0.9);
+  box-shadow: var(--shadow-card-unified);
+}
+
+.product-catalog-card h3 {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.25;
+  color: #0b58b8;
+}
+
+.product-catalog-card p {
+  margin: 0.8rem 0 0;
+  color: #4b5563;
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.product-catalog-card .btn {
+  margin-top: 1rem;
 }
 
 .products-main .section-header {
@@ -1784,13 +1869,15 @@ main section {
 .news-mini-subscribe,
 .news-newsletter,
 .news-shell,
-.project-card,
-.project-card-sm,
-.project-card-lg,
+.news-related-item,
+.news-related-stack,
 .solution-card,
 .intro-card,
 .glass-card,
 .glass-solid {
+  background: rgba(245, 247, 252, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 12px !important;
   box-shadow: var(--shadow-card-unified) !important;
 }
 
@@ -1812,6 +1899,15 @@ main section {
   .cert-grid,
   .leader-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cert-track {
+    grid-auto-columns: calc((100% - (20px * 2)) / 3);
+    gap: 20px;
+  }
+
+  .cert-scrollbar {
+    width: min(320px, 56%);
   }
 
   .footer-grid {
@@ -2025,12 +2121,22 @@ main section {
   }
 
   .news-related-item {
-    align-items: flex-start;
+    align-items: center;
   }
 
   .news-related-item img {
     width: 100px;
     height: 80px;
+    object-position: center;
+  }
+
+  .cert-track {
+    grid-auto-columns: 84%;
+    gap: 16px;
+  }
+
+  .cert-scrollbar {
+    width: min(250px, 70%);
   }
 
   .news-detail-download {
@@ -2091,5 +2197,9 @@ main section {
   .product-split-body p,
   .product-acoustic-copy .section-body {
     font-size: 1rem;
+  }
+
+  .product-catalog-grid {
+    grid-template-columns: 1fr;
   }
 }

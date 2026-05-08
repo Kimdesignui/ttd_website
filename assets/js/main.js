@@ -15,7 +15,10 @@ function normalizePagePath(href) {
 
 function initNavActiveState() {
   const rawPage = normalizePagePath(window.location.href) || "index.html";
-  const currentPage = rawPage.startsWith("news-") ? "news.html" : rawPage;
+  let currentPage = rawPage;
+  if (rawPage.startsWith("news-")) currentPage = "news.html";
+  if (rawPage.startsWith("product-")) currentPage = "products.html";
+  if (rawPage.startsWith("career-")) currentPage = "careers.html";
   const navLinks = document.querySelectorAll(".menu a, .navbar-nav .nav-link");
   if (!navLinks.length) return;
 
@@ -306,6 +309,74 @@ function initSupportCardHover() {
   });
 }
 
+function initCertificateScroller() {
+  const scrollers = document.querySelectorAll("[data-cert-scroller]");
+  if (!scrollers.length) return;
+
+  scrollers.forEach((scroller) => {
+    const track = scroller.querySelector("[data-cert-track]");
+    const thumb = scroller.parentElement?.querySelector("[data-cert-thumb]");
+    if (!track || !thumb) return;
+
+    let stepSize = 0;
+
+    const updateStepSize = () => {
+      const firstItem = track.querySelector(".cert-item");
+      if (!firstItem) return;
+      const trackStyles = window.getComputedStyle(track);
+      const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || "0");
+      stepSize = firstItem.getBoundingClientRect().width + gap;
+    };
+
+    const syncThumb = () => {
+      const maxScroll = Math.max(scroller.scrollWidth - scroller.clientWidth, 0);
+      const visibleRatio = maxScroll > 0 ? scroller.clientWidth / scroller.scrollWidth : 1;
+      const thumbWidth = Math.max(visibleRatio * 100, 18);
+      const progress = maxScroll > 0 ? scroller.scrollLeft / maxScroll : 0;
+      const maxTravel = 100 - thumbWidth;
+
+      thumb.style.width = `${thumbWidth}%`;
+      thumb.style.transform = `translateX(${maxTravel * progress}%)`;
+      thumb.style.opacity = maxScroll > 0 ? "1" : "0.45";
+    };
+
+    const scrollByStep = (direction) => {
+      if (!stepSize) updateStepSize();
+      if (!stepSize) return;
+      scroller.scrollBy({ left: direction * stepSize, behavior: "smooth" });
+    };
+
+    scroller.addEventListener("wheel", (event) => {
+      const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+      if (maxScroll <= 0) return;
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+      event.preventDefault();
+      scrollByStep(event.deltaY > 0 ? 1 : -1);
+    }, { passive: false });
+
+    scroller.addEventListener("scroll", () => {
+      window.requestAnimationFrame(syncThumb);
+    }, { passive: true });
+
+    const bar = thumb.parentElement;
+    bar?.addEventListener("click", (event) => {
+      const rect = bar.getBoundingClientRect();
+      const raw = (event.clientX - rect.left) / rect.width;
+      const progress = Math.min(Math.max(raw, 0), 1);
+      const maxScroll = Math.max(scroller.scrollWidth - scroller.clientWidth, 0);
+      scroller.scrollTo({ left: progress * maxScroll, behavior: "smooth" });
+    });
+
+    window.addEventListener("resize", () => {
+      updateStepSize();
+      syncThumb();
+    }, { passive: true });
+
+    updateStepSize();
+    syncThumb();
+  });
+}
+
 function initFloatingActions() {
   if (document.querySelector(".floating-actions")) return;
 
@@ -340,6 +411,7 @@ function initPage() {
   wireImageFallbacks();
   initHeroSlider();
   initSupportCardHover();
+  initCertificateScroller();
   initFloatingActions();
 }
 
