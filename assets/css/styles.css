@@ -2,6 +2,7 @@
   --bg-main: #f9f9ff;
   --bg-soft: #f1f3fe;
   --bg-deep: #ebedf8;
+  --page-bg: #f3f3f3;
   --text: #181c23;
   --muted: #414754;
   --primary: #005cbc;
@@ -32,10 +33,39 @@ body {
   font-family: "Inter", "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
   color: var(--text);
   line-height: 1.5;
+  position: relative;
+  overflow-x: hidden;
   background:
-    radial-gradient(900px 420px at 14% -12%, rgba(149, 189, 255, 0.2), transparent 72%),
-    radial-gradient(900px 420px at 96% -6%, rgba(153, 214, 252, 0.2), transparent 70%),
-    linear-gradient(180deg, var(--bg-main) 0%, #ffffff 100%);
+    radial-gradient(circle at 10% 0%, rgba(31, 119, 238, 0.14), transparent 32%),
+    radial-gradient(circle at 95% 100%, rgba(20, 115, 241, 0.14), transparent 28%),
+    var(--page-bg);
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(56px);
+  opacity: 0.48;
+}
+
+body::before {
+  width: 540px;
+  height: 540px;
+  left: -180px;
+  top: 120px;
+  background: radial-gradient(circle, rgba(45, 138, 255, 0.52) 0%, rgba(45, 138, 255, 0) 72%);
+}
+
+body::after {
+  width: 620px;
+  height: 620px;
+  right: -220px;
+  bottom: -120px;
+  background: radial-gradient(circle, rgba(26, 119, 236, 0.45) 0%, rgba(26, 119, 236, 0) 76%);
 }
 
 a {
@@ -52,6 +82,11 @@ img {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 32px;
+}
+
+main .container {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .topbar {
@@ -659,6 +694,11 @@ main section {
   color: var(--muted);
 }
 
+.jobs-layout.jobs-many .cv-panel {
+  position: sticky;
+  top: 110px;
+}
+
 .form-grid-2 {
   margin-top: 20px;
   display: grid;
@@ -1163,11 +1203,17 @@ main section {
 }
 
 .news-section-title {
-  font-size: clamp(28px, 3.4vw, 42px);
+  font-size: clamp(1.75rem, 2.2vw, 2rem);
   line-height: 1.2;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: #0b58b8;
+}
+
+.news-company-title,
+.news-related-title {
+  font-size: 2rem;
+  line-height: 2.375rem;
 }
 
 .news-section-link {
@@ -1317,6 +1363,100 @@ main section {
   margin: 6px 0 0;
   font-size: 14px;
   color: #727785;
+}
+
+.hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(44px);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.hero-glow-left {
+  width: 640px;
+  height: 640px;
+  left: -190px;
+  top: 40px;
+  background: radial-gradient(circle, rgba(22, 130, 255, 0.38) 0%, rgba(22, 130, 255, 0.18) 42%, rgba(22, 130, 255, 0) 84%);
+}
+
+.section-home-news {
+  position: relative;
+}
+
+.section-home-news .section-title {
+  font-size: clamp(1.8rem, 2.2vw, 2rem);
+}
+
+.home-news-card {
+  overflow: hidden;
+}
+
+.home-news-media {
+  position: relative;
+  display: block;
+  text-decoration: none;
+}
+
+.home-news-media img {
+  width: 100%;
+  aspect-ratio: 387.33 / 192;
+  object-fit: cover;
+  display: block;
+}
+
+.home-news-chip {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(241, 245, 251, 0.95);
+  color: #0d57b8;
+  font-size: 0.95rem;
+  line-height: 1;
+  font-weight: 500;
+  padding: 0.52rem 0.95rem;
+}
+
+.home-news-body {
+  padding: 1.35rem 1.3rem 1.55rem;
+}
+
+.home-news-body h3 {
+  margin: 0 0 0.9rem;
+  font-size: 1.5rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.home-news-body h3 a {
+  text-decoration: none;
+  color: #0e5dbf;
+}
+
+.home-news-body h3 a:hover {
+  color: #0a6dd9;
+}
+
+.home-news-body p {
+  margin: 0 0 1rem;
+  color: #49586e;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.home-news-body time {
+  color: #7b8798;
+  font-size: 0.95rem;
+}
+
+.contact-section-plain {
+  background: transparent !important;
 }
 
 .news-mini-subscribe {
@@ -1934,6 +2074,10 @@ main section {
     overflow: visible;
     padding-right: 0;
   }
+
+  .home-news-body h3 {
+    font-size: 1.35rem;
+  }
 }
 
 @media (max-width: 860px) {
@@ -1944,6 +2088,11 @@ main section {
 
   .container {
     padding: 0 16px;
+  }
+
+  main .container {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .nav-wrap {
@@ -2092,9 +2241,25 @@ main section {
     width: 100%;
   }
 
+  .jobs-layout.jobs-many .cv-panel {
+    position: static;
+  }
+
   .news-shell {
     padding: 14px;
     border-radius: 14px;
+  }
+
+  .home-news-body {
+    padding: 1.1rem 1rem 1.2rem;
+  }
+
+  .home-news-body h3 {
+    font-size: 1.2rem;
+  }
+
+  .home-news-body p {
+    font-size: 0.95rem;
   }
 
   .news-section-title {

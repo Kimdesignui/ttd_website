@@ -377,6 +377,13 @@ function initCertificateScroller() {
   });
 }
 
+function initCareerStickyPanel() {
+  const layout = document.querySelector(".jobs-layout");
+  if (!layout) return;
+  const totalJobs = layout.querySelectorAll(".jobs .job-card").length;
+  layout.classList.toggle("jobs-many", totalJobs > 3);
+}
+
 function initFloatingActions() {
   if (document.querySelector(".floating-actions")) return;
 
@@ -412,6 +419,7 @@ function initPage() {
   initHeroSlider();
   initSupportCardHover();
   initCertificateScroller();
+  initCareerStickyPanel();
   initFloatingActions();
 }
 
