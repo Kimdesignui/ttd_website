@@ -329,14 +329,25 @@ function initCertificateScroller() {
     };
 
     const syncThumb = () => {
-      const maxScroll = Math.max(scroller.scrollWidth - scroller.clientWidth, 0);
-      const visibleRatio = maxScroll > 0 ? scroller.clientWidth / scroller.scrollWidth : 1;
-      const thumbWidth = Math.max(visibleRatio * 100, 18);
-      const progress = maxScroll > 0 ? scroller.scrollLeft / maxScroll : 0;
-      const maxTravel = 100 - thumbWidth;
+      const bar = thumb.parentElement;
+      if (!bar) return;
 
-      thumb.style.width = `${thumbWidth}%`;
-      thumb.style.transform = `translateX(${maxTravel * progress}%)`;
+      const maxScroll = Math.max(scroller.scrollWidth - scroller.clientWidth, 0);
+      const barWidth = bar.clientWidth || 0;
+      const visibleRatio = maxScroll > 0 ? scroller.clientWidth / scroller.scrollWidth : 1;
+      const thumbWidthPx = maxScroll > 0 ? Math.max(barWidth * visibleRatio, 30) : barWidth;
+      const maxTravelPx = Math.max(barWidth - thumbWidthPx, 0);
+
+      let progress = 0;
+      if (maxScroll > 0) {
+        const maxStep = stepSize > 0 ? Math.max(Math.round(maxScroll / stepSize), 1) : 1;
+        const currentStep = stepSize > 0 ? Math.round(scroller.scrollLeft / stepSize) : 0;
+        progress = currentStep / maxStep;
+        if (scroller.scrollLeft >= maxScroll - 1) progress = 1;
+      }
+
+      thumb.style.width = `${thumbWidthPx}px`;
+      thumb.style.left = `${maxTravelPx * Math.min(Math.max(progress, 0), 1)}px`;
       thumb.style.opacity = maxScroll > 0 ? "1" : "0.45";
     };
 
@@ -364,6 +375,19 @@ function initCertificateScroller() {
       const raw = (event.clientX - rect.left) / rect.width;
       const progress = Math.min(Math.max(raw, 0), 1);
       const maxScroll = Math.max(scroller.scrollWidth - scroller.clientWidth, 0);
+
+      if (maxScroll <= 0) {
+        scroller.scrollTo({ left: 0, behavior: "smooth" });
+        return;
+      }
+
+      if (stepSize > 0) {
+        const maxStep = Math.max(Math.round(maxScroll / stepSize), 1);
+        const targetStep = Math.round(progress * maxStep);
+        scroller.scrollTo({ left: Math.min(targetStep * stepSize, maxScroll), behavior: "smooth" });
+        return;
+      }
+
       scroller.scrollTo({ left: progress * maxScroll, behavior: "smooth" });
     });
 

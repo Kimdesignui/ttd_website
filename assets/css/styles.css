@@ -1015,7 +1015,7 @@ main section {
 }
 
 .about-intro {
-  background: linear-gradient(180deg, #f1f3fe 0%, #f9f9ff 100%);
+  background: transparent;
   text-align: center;
   padding: 128px 0 96px;
 }
@@ -1088,8 +1088,8 @@ main section {
   width: 25%;
   border-radius: inherit;
   background: rgba(98, 109, 128, 0.82);
-  transform: translateX(0);
-  transition: transform 0.18s ease, width 0.18s ease;
+  left: 0;
+  transition: left 0.18s ease, width 0.18s ease;
 }
 
 .cert-item {
