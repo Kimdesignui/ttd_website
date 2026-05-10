@@ -188,7 +188,7 @@ body {
 .hero-title {
   color: var(--ttd-primary);
   font-size: clamp(2.25rem, 3.6vw, 3rem);
-  line-height: 1.03;
+  line-height: 130%;
   font-weight: 800;
   letter-spacing: -0.03em;
 }

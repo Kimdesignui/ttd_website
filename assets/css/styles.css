@@ -599,16 +599,8 @@ main section {
   font-size: 20px;
 }
 
-.careers-page .topbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 12px 12px 0;
-}
-
 .careers-hero {
-  padding: calc(12px + 81px + var(--page-hero-top)) 32px 80px;
+  padding: var(--page-hero-top) 32px 80px;
   overflow: hidden;
   background:
     linear-gradient(180deg, #e7f0ff 0%, #f9f9ff 100%);
@@ -741,7 +733,6 @@ main section {
 }
 
 .careers-benefits {
-  margin-top: 56px;
   align-items: stretch;
   padding-top: 60px;
   padding-bottom: 60px;
@@ -815,6 +806,10 @@ main section {
 .cv-panel-subtitle {
   margin: 20px 0 8px;
   font-size: 1.2rem;
+}
+
+.cv-panel-subtitle-first {
+  margin-top: 18px;
 }
 
 .cv-form-row {
@@ -910,6 +905,41 @@ main section {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+
+.career-detail-hero-card {
+  padding: 36px;
+}
+
+.career-detail-title {
+  color: #0b58b8;
+  font-size: clamp(2rem, 3.6vw, 2.3rem);
+}
+
+.career-detail-meta {
+  margin-top: 14px;
+  font-size: 0.95rem;
+}
+
+.career-detail-meta i {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.career-detail-section {
+  padding-top: 0;
+}
+
+.career-detail-layout {
+  align-items: start;
+}
+
+.career-detail-content-card {
+  padding: 32px;
+}
+
+.career-detail-heading-gap {
+  margin-top: 26px;
 }
 
 .job-card .btn-outline {
@@ -2407,11 +2437,6 @@ main section {
   .topbar {
     top: 8px;
     padding: 0 10px 8px;
-  }
-
-  .careers-page .topbar {
-    top: 0;
-    padding: 8px 10px 0;
   }
 
   .container {
