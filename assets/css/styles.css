@@ -18,6 +18,10 @@
   --shadow-md: 0 20px 30px -14px rgba(95, 119, 166, 0.16);
   --shadow-sm: 0 8px 20px -12px rgba(95, 119, 166, 0.16);
   --shadow-card-unified: 0 24px 48px -24px rgba(73, 98, 140, 0.24);
+  --h2-card-size: clamp(1.75rem, 2.2vw, 2rem);
+  --h2-card-line: 1.2;
+  --h2-card-weight: 700;
+  --h2-card-color: #0b58b8;
 }
 
 * {
@@ -891,7 +895,7 @@ main section {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0;
   color: #566175;
   font-size: 0.875rem;
   line-height: 1.35;
@@ -1108,7 +1112,15 @@ main section {
 
 .cert-item p {
   margin: 12px 0 0;
-  font-size: 14px;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--muted);
+}
+
+.cert-item p strong {
+  font-weight: 500;
+  color: #1f2937;
 }
 
 .leader-grid {
@@ -1459,6 +1471,73 @@ main section {
   background: transparent !important;
 }
 
+.contact-hero .section-title {
+  color: var(--h2-card-color);
+}
+
+.contact-hero .section-sub {
+  max-width: 760px;
+}
+
+.contact-section-plain .contact-panel {
+  padding: 32px;
+}
+
+.contact-media {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.contact-panel-title {
+  margin: 14px 0 0;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  color: var(--h2-card-color);
+}
+
+.contact-panel-title-flat {
+  margin-top: 0;
+}
+
+.contact-info-list {
+  margin-top: 8px;
+}
+
+.contact-form {
+  margin-top: 12px;
+  gap: 12px;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 6px;
+}
+
+.contact-form .btn {
+  margin-top: 6px;
+  justify-self: start;
+}
+
+@media (max-width: 1199.98px) {
+  .contact-section-plain .contact-panel {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .contact-section-plain .contact-panel {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .contact-section-plain .contact-panel {
+    padding: 18px;
+  }
+}
+
 .news-mini-subscribe {
   padding: 18px;
   border-radius: 12px;
@@ -1506,6 +1585,7 @@ main section {
 .news-inline-form .btn {
   border-radius: 8px;
   padding-inline: 20px;
+  white-space: nowrap;
 }
 
 .news-arrow-controls {
@@ -1586,7 +1666,7 @@ main section {
 
 .news-newsletter {
   position: relative;
-  padding: 38px;
+  padding: 30px 38px;
   border-radius: 12px;
   background: rgba(245, 247, 252, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.56);
@@ -1602,12 +1682,17 @@ main section {
   background: radial-gradient(circle at 100% 0%, #38bdf8 0%, transparent 48%);
 }
 
+.news-newsletter > .row {
+  position: relative;
+  z-index: 1;
+}
+
 .news-newsletter h3 {
   margin: 0;
-  font-size: clamp(28px, 3.2vw, 36px);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: #181c23;
+  font-size: var(--h2-card-size);
+  line-height: var(--h2-card-line);
+  font-weight: var(--h2-card-weight);
+  color: var(--h2-card-color);
 }
 
 .news-newsletter p {
@@ -2276,6 +2361,10 @@ main section {
     padding: 18px;
   }
 
+  .news-newsletter h3 {
+    font-size: 1.5rem;
+  }
+
   .news-feature-body h3,
   .news-guide-card h3 {
     font-size: 24px;
@@ -2293,6 +2382,14 @@ main section {
     width: 100px;
     height: 80px;
     object-position: center;
+  }
+
+  .contact-media {
+    height: 260px;
+  }
+
+  .contact-form .btn {
+    width: 100%;
   }
 
   .cert-track {
