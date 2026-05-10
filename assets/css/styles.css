@@ -775,10 +775,16 @@ main section {
   margin-top: 24px;
 }
 
+.jobs-layout.jobs-many .careers-jobs-list {
+  position: sticky;
+  top: 110px;
+}
+
 #jobs {
   background: #f0f3ff;
   margin-bottom: -40px;
 }
+
 
 .jobs-layout {
   align-items: start;
@@ -2598,6 +2604,11 @@ main section {
     position: static;
   }
 
+  .jobs-layout.jobs-many .careers-jobs-list {
+    position: static;
+    top: auto;
+  }
+
   .news-shell {
     padding: 14px;
     border-radius: 14px;
@@ -2822,5 +2833,55 @@ main section {
 
   .product-catalog-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* About page - organization images ratio and mobile grid */
+.about-page .leader-card img {
+  width: 100%;
+  height: auto !important;
+  aspect-ratio: 294 / 320;
+  object-fit: cover;
+}
+
+@media (max-width: 860px) {
+  .about-page .leader-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* About page - certificates responsive behavior */
+.about-page .cert-item {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.about-page .cert-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 250.4 / 350;
+  flex: 0 0 auto;
+  object-fit: cover;
+}
+
+@media (max-width: 860px) {
+  .about-page .cert-scroller {
+    overflow: visible !important;
+  }
+
+  .about-page .cert-track {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-columns: unset !important;
+    gap: 16px;
+  }
+
+  .about-page .cert-track .cert-item:nth-child(n + 3) {
+    display: none;
+  }
+
+  .about-page .cert-scrollbar {
+    display: none;
   }
 }
