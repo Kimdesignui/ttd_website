@@ -53,7 +53,7 @@ function initDesktopMenuIndicator() {
   const links = Array.from(menuEl.querySelectorAll("a"));
   if (!links.length) return;
 
-  const mobileMq = window.matchMedia("(max-width: 860px)");
+  const mobileMq = window.matchMedia("(max-width: 1100px)");
   let indicator = null;
 
   const getActiveLink = () => {
@@ -452,3 +452,154 @@ if (document.readyState === "loading") {
 } else {
   initPage();
 }
+(function () {
+  var MOBILE_BREAKPOINT = 860;
+  var AUTO_INTERVAL_MS = 2800;
+
+  function getSources(gallery) {
+    return Array.from(gallery.querySelectorAll("img"))
+      .map(function (img) {
+        return {
+          src: img.getAttribute("src"),
+          alt: img.getAttribute("alt") || "",
+        };
+      })
+      .filter(function (item) {
+        return !!item.src;
+      });
+  }
+
+  function createItem(source) {
+    var item = document.createElement("div");
+    var img = document.createElement("img");
+    item.className = "careers-hero-carousel-item";
+    img.src = source.src;
+    img.alt = source.alt;
+    img.loading = "lazy";
+    item.appendChild(img);
+    return item;
+  }
+
+  function calcStep(track) {
+    var first = track.querySelector(".careers-hero-carousel-item");
+    if (!first) return 0;
+    var gap = parseFloat(window.getComputedStyle(track).columnGap || window.getComputedStyle(track).gap || "0") || 0;
+    return first.getBoundingClientRect().width + gap;
+  }
+
+  function destroyCarousel(gallery) {
+    var state = gallery._careersCarouselState;
+    if (state && state.timer) {
+      clearInterval(state.timer);
+    }
+    gallery._careersCarouselState = null;
+    gallery.classList.remove("is-mobile-carousel");
+    gallery.removeAttribute("data-carousel-ready");
+    if (gallery.dataset.carouselOriginalHtml) {
+      gallery.innerHTML = gallery.dataset.carouselOriginalHtml;
+    }
+  }
+
+  function initCarousel(gallery) {
+    if (window.innerWidth > MOBILE_BREAKPOINT) {
+      destroyCarousel(gallery);
+      return;
+    }
+    if (gallery.dataset.carouselReady === "1") return;
+
+    var sources = getSources(gallery);
+    if (sources.length < 3) return;
+
+    if (!gallery.dataset.carouselOriginalHtml) {
+      gallery.dataset.carouselOriginalHtml = gallery.innerHTML;
+    }
+
+    var track = document.createElement("div");
+    track.className = "careers-hero-carousel-track";
+
+    var extended = sources.slice(-3).concat(sources).concat(sources.slice(0, 3));
+    extended.forEach(function (source) {
+      track.appendChild(createItem(source));
+    });
+
+    gallery.innerHTML = "";
+    gallery.appendChild(track);
+    gallery.classList.add("is-mobile-carousel");
+
+    var state = {
+      index: 3,
+      baseCount: sources.length,
+      track: track,
+      timer: null,
+    };
+    gallery._careersCarouselState = state;
+
+    function render(noTransition) {
+      if (!gallery._careersCarouselState) return;
+      if (noTransition) track.classList.add("is-no-transition");
+      else track.classList.remove("is-no-transition");
+      var step = calcStep(track);
+      track.style.transform = "translate3d(" + (-state.index * step) + "px,0,0)";
+    }
+
+    function next() {
+      if (!gallery._careersCarouselState) return;
+      state.index += 1;
+      render(false);
+    }
+
+    function start() {
+      if (state.timer) clearInterval(state.timer);
+      state.timer = setInterval(next, AUTO_INTERVAL_MS);
+    }
+
+    track.addEventListener("transitionend", function () {
+      if (!gallery._careersCarouselState) return;
+      if (state.index >= state.baseCount + 3) {
+        state.index = 3;
+        render(true);
+      }
+      if (state.index <= 2) {
+        state.index = state.baseCount + 2;
+        render(true);
+      }
+    });
+
+    gallery.addEventListener("mouseenter", function () {
+      if (state.timer) clearInterval(state.timer);
+    });
+    gallery.addEventListener("mouseleave", start);
+    gallery.addEventListener("touchstart", function () {
+      if (state.timer) clearInterval(state.timer);
+    }, { passive: true });
+    gallery.addEventListener("touchend", start, { passive: true });
+
+    render(true);
+    start();
+    gallery.dataset.carouselReady = "1";
+  }
+
+  function refreshCareersCarousel() {
+    if (!document.body.classList.contains("careers-page")) return;
+    var gallery = document.querySelector(".careers-hero-gallery");
+    if (!gallery) return;
+    if (window.innerWidth > MOBILE_BREAKPOINT) {
+      destroyCarousel(gallery);
+      return;
+    }
+    initCarousel(gallery);
+    var state = gallery._careersCarouselState;
+    if (state) {
+      state.track.classList.add("is-no-transition");
+      var step = calcStep(state.track);
+      state.track.style.transform = "translate3d(" + (-state.index * step) + "px,0,0)";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", refreshCareersCarousel);
+  window.addEventListener("load", refreshCareersCarousel);
+  window.addEventListener("resize", function () {
+    clearTimeout(window._careersCarouselResizeTimer);
+    window._careersCarouselResizeTimer = setTimeout(refreshCareersCarousel, 140);
+  });
+})();
