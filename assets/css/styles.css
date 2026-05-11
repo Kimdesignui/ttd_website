@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --bg-main: #f9f9ff;
   --bg-soft: #f1f3fe;
   --bg-deep: #ebedf8;
@@ -885,7 +885,7 @@ main section {
 }
 
 .list-check li::before {
-  content: "✓";
+  content: "\2713";
   position: absolute;
   left: 0;
   top: 0;
@@ -3037,313 +3037,55 @@ body.careers-page main {
     display: none;
   }
 }
-/* Mobile infinite carousel for careers hero gallery */
-@media (max-width: 860px) {
-  .careers-page .careers-hero-gallery {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    overflow: hidden !important;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .careers-page .careers-hero-gallery::-webkit-scrollbar {
-    display: none;
-  }
-
-  .careers-page .careers-hero-carousel-track {
-    display: flex;
-    gap: 12px;
-    align-items: stretch;
-    will-change: transform;
-    transition: transform 560ms ease;
-  }
-
-  .careers-page .careers-hero-gallery.is-mobile-carousel {
-    min-height: 120px;
-  }
-
-  .careers-page .careers-hero-carousel-track.is-no-transition {
-    transition: none !important;
-  }
-
-  .careers-page .careers-hero-carousel-item {
-    flex: 0 0 calc((100% - 24px) / 3);
-    min-width: 0;
-    border-radius: 14px;
-    overflow: hidden;
-    background: transparent;
-  }
-
-  .careers-page .careers-hero-carousel-item img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    object-position: center;
-    aspect-ratio: 4 / 5;
-  }
-
-  /* Prevent extra blank height/width on careers mobile */
-  body.careers-page,
-  body.careers-page main {
-    min-height: auto !important;
-    height: auto !important;
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-    overflow-x: clip !important;
-  }
-
-  body.careers-page::before,
-  body.careers-page::after,
-  body.careers-page main::before,
-  body.careers-page main::after {
-    content: none !important;
-    display: none !important;
-  }
-
-  body.careers-page .floating-actions {
-    position: fixed !important;
-    left: auto !important;
-    top: auto !important;
-    right: max(10px, env(safe-area-inset-right)) !important;
-    bottom: max(10px, env(safe-area-inset-bottom)) !important;
-    transform: none !important;
-    max-width: calc(100vw - 20px) !important;
-    width: auto !important;
-    overflow: hidden !important;
-    z-index: 1200;
-  }
-
-  body.careers-page .floating-actions .btn-quote,
-  body.careers-page .floating-actions .quote-button {
-    max-width: min(164px, calc(100vw - 40px)) !important;
-  }
-}
-/* Careers page: structural guard to prevent extra space below footer */
-body.careers-page {
-  margin: 0;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: clip;
-}
-
-body.careers-page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100dvh;
-}
-
-body.careers-page main {
-  flex: 1 0 auto;
-  width: 100%;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding-bottom: 0 !important;
-  overflow-x: clip;
-}
-
-body.careers-page .site-footer {
-  flex-shrink: 0;
-  margin-top: 0 !important;
-}
-
-body.careers-page::before,
-body.careers-page::after,
-body.careers-page main::before,
-body.careers-page main::after {
-  content: none !important;
-  display: none !important;
-}
-/* ===== Careers hard-fix: footer extra space + mobile hero clipping ===== */
-@media (max-width: 860px) {
-  body.careers-page {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-height: auto !important;
-    overflow-x: clip !important;
-    overflow-y: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  body.careers-page main {
-    width: 100% !important;
-    min-height: auto !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding-bottom: 0 !important;
-    overflow-x: clip !important;
-  }
-
-  body.careers-page .site-footer {
-    margin-top: 0 !important;
-    padding-bottom: 3rem !important;
-  }
-
-  body.careers-page .floating-actions {
-    position: fixed !important;
-    left: auto !important;
-    top: auto !important;
-    right: max(10px, env(safe-area-inset-right)) !important;
-    bottom: max(10px, env(safe-area-inset-bottom)) !important;
-    transform: none !important;
-    width: auto !important;
-    max-width: calc(100vw - 20px) !important;
-    margin: 0 !important;
-    z-index: 1200 !important;
-  }
-
-  body.careers-page .floating-actions .btn-quote,
-  body.careers-page .floating-actions .quote-button {
-    max-width: min(164px, calc(100vw - 40px)) !important;
-  }
-
-  body.careers-page::before,
-  body.careers-page::after,
-  body.careers-page main::before,
-  body.careers-page main::after {
-    content: none !important;
-    display: none !important;
-  }
-
-  body.careers-page .careers-hero-gallery,
-  body.careers-page .careers-hero-gallery.is-mobile-carousel {
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    overflow: hidden !important;
-  }
-
-  body.careers-page .careers-hero-carousel-track {
-    display: flex !important;
-    align-items: stretch !important;
-  }
-
-  body.careers-page .careers-hero-carousel-item {
-    flex: 0 0 calc((100% - 24px) / 3) !important;
-    aspect-ratio: 4 / 5 !important;
-    border-radius: 14px !important;
-    overflow: hidden !important;
-  }
-
-  body.careers-page .careers-hero-carousel-item img {
-    width: 100% !important;
-    height: 100% !important;
-    display: block !important;
-    object-fit: cover !important;
-    object-position: center !important;
-  }
-}
-/* ===== Final careers hotfix (Firefox/Chrome): footer gap + hero item clipping ===== */
-body.careers-page .floating-actions {
-  position: fixed !important;
-  left: auto !important;
-  top: auto !important;
-  right: max(10px, env(safe-area-inset-right)) !important;
-  bottom: max(10px, env(safe-area-inset-bottom)) !important;
-  width: auto !important;
-  height: auto !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  transform: none !important;
-  z-index: 1200 !important;
-}
-
-@media (max-width: 860px) {
-  body.careers-page {
-    min-height: auto !important;
-    height: auto !important;
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-  }
-
-  body.careers-page main {
-    min-height: auto !important;
-    height: auto !important;
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-  }
-
-  body.careers-page .site-footer {
-    margin-bottom: 0 !important;
-  }
-
-  body.careers-page .site-footer + * {
-    margin-top: 0 !important;
-  }
-
-  body.careers-page .careers-hero-gallery.is-mobile-carousel {
-    --cg-gap: 12px;
-    --cg-side: 16px;
-    --cg-item-w: calc((100% - (var(--cg-side) * 2) - (var(--cg-gap) * 2)) / 3);
-    --cg-item-h: calc(var(--cg-item-w) * 1.25);
-    padding-left: var(--cg-side) !important;
-    padding-right: var(--cg-side) !important;
-    padding-bottom: 0 !important;
-    height: var(--cg-item-h) !important;
-    min-height: var(--cg-item-h) !important;
-    max-height: none !important;
-    overflow: hidden !important;
-  }
-
-  body.careers-page .careers-hero-gallery.is-mobile-carousel .careers-hero-carousel-track {
-    gap: var(--cg-gap) !important;
-    height: var(--cg-item-h) !important;
-    min-height: var(--cg-item-h) !important;
-    align-items: stretch !important;
-  }
-
-  body.careers-page .careers-hero-gallery.is-mobile-carousel .careers-hero-carousel-item {
-    flex: 0 0 var(--cg-item-w) !important;
-    width: var(--cg-item-w) !important;
-    height: var(--cg-item-h) !important;
-    min-height: var(--cg-item-h) !important;
-    border-radius: 14px !important;
-    overflow: hidden !important;
-  }
-
-  body.careers-page .careers-hero-gallery.is-mobile-carousel .careers-hero-carousel-item img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    border-radius: inherit !important;
-    display: block !important;
-  }
-}
-/* ===== Careers mobile final override (<860): fix footer gap + keep 3-up carousel stable ===== */
+/* Careers mobile layout: carousel, floating CTA and footer clamp */
 @media (max-width: 859.98px) {
-  body.careers-page {
+  html:has(body.careers-page) {
+    min-height: 0 !important;
+    height: auto !important;
     overflow-x: clip !important;
+    background: #eef0f5 !important;
+  }
+
+  body.careers-page {
+    display: block !important;
+    min-height: 0 !important;
+    height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
-    min-height: auto !important;
-    height: auto !important;
+    overflow-x: clip !important;
+    background: #eef0f5 !important;
   }
 
   body.careers-page main {
-    overflow-x: clip !important;
-    min-height: auto !important;
+    display: block !important;
+    min-height: 0 !important;
     height: auto !important;
     margin: 0 !important;
-    padding-bottom: 0 !important;
-  }
-
-  body.careers-page .site-footer {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding-bottom: 3rem !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: #e7f0ff !important;
   }
 
   body.careers-page::before,
   body.careers-page::after,
   body.careers-page main::before,
-  body.careers-page main::after {
+  body.careers-page main::after,
+  body.careers-page .site-footer::after {
     content: none !important;
     display: none !important;
+  }
+
+  body.careers-page .site-footer {
+    display: block !important;
+    margin: 0 !important;
+    padding-bottom: 18px !important;
+    background: #eef0f5 !important;
+    box-shadow: 0 100vmax 0 100vmax #eef0f5 !important;
+    clip-path: inset(0 -100vmax -100vmax -100vmax);
+  }
+
+  body.careers-page > :last-child {
+    margin-bottom: 0 !important;
   }
 
   body.careers-page .floating-actions {
@@ -3351,37 +3093,56 @@ body.careers-page .floating-actions {
     inset: auto max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) auto !important;
     left: auto !important;
     top: auto !important;
-    transform: none !important;
     width: auto !important;
     height: auto !important;
     max-width: calc(100vw - 20px) !important;
     margin: 0 !important;
-    z-index: 1200 !important;
+    padding: 0 !important;
+    transform: none !important;
+    overflow: hidden !important;
+    z-index: 1500 !important;
   }
 
   body.careers-page .floating-actions .btn-quote,
   body.careers-page .floating-actions .quote-button {
     max-width: min(164px, calc(100vw - 40px)) !important;
+    white-space: nowrap !important;
   }
 
   body.careers-page .careers-hero-gallery {
     display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     overflow: hidden !important;
     padding-left: 16px !important;
     padding-right: 16px !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  body.careers-page .careers-hero-gallery::-webkit-scrollbar {
+    display: none;
+  }
+
+  body.careers-page .careers-hero-gallery.is-mobile-carousel {
+    --careers-mobile-gap: 12px;
+    --careers-mobile-item: calc((100vw - 32px - (var(--careers-mobile-gap) * 2)) / 3);
+    height: var(--careers-mobile-item) !important;
+    min-height: var(--careers-mobile-item) !important;
+    max-height: var(--careers-mobile-item) !important;
+    padding-bottom: 0 !important;
   }
 
   body.careers-page .careers-hero-gallery.is-mobile-carousel .careers-hero-carousel-track {
     display: flex !important;
-    gap: 12px !important;
+    gap: var(--careers-mobile-gap) !important;
     align-items: stretch !important;
-    transition: transform 560ms ease !important;
+    height: var(--careers-mobile-item) !important;
+    min-height: var(--careers-mobile-item) !important;
     will-change: transform;
+    transition: transform 560ms ease;
   }
 
   body.careers-page .careers-hero-gallery.is-mobile-carousel .careers-hero-carousel-track.is-no-transition {
@@ -3389,106 +3150,216 @@ body.careers-page .floating-actions {
   }
 
   body.careers-page .careers-hero-gallery.is-mobile-carousel .careers-hero-carousel-item {
-    --mobile-carousel-item: calc((100% - 24px) / 3);
-    flex: 0 0 var(--mobile-carousel-item) !important;
-    width: var(--mobile-carousel-item) !important;
-    height: var(--mobile-carousel-item) !important;
+    flex: 0 0 var(--careers-mobile-item) !important;
+    width: var(--careers-mobile-item) !important;
+    height: var(--careers-mobile-item) !important;
+    min-width: 0 !important;
+    min-height: var(--careers-mobile-item) !important;
+    max-height: var(--careers-mobile-item) !important;
     aspect-ratio: 1 / 1 !important;
     border-radius: 14px !important;
     overflow: hidden !important;
-    min-width: 0 !important;
-    min-height: var(--mobile-carousel-item) !important;
-    max-height: var(--mobile-carousel-item) !important;
+    background: transparent !important;
   }
 
   body.careers-page .careers-hero-gallery.is-mobile-carousel .careers-hero-carousel-item img {
     width: 100% !important;
     height: 100% !important;
+    display: block !important;
     object-fit: cover !important;
     object-position: center !important;
-    display: block !important;
   }
 }
-/* ===== Careers mobile emergency override (Chrome + Firefox) ===== */
-@media (max-width: 859.98px) {
-  body.careers-page {
-    display: block !important;
-    min-height: 0 !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow-x: clip !important;
+
+/* About page: Vision / Goals / Mission cards in careers-like format */
+.about-page .about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.about-page .about-values-card {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  padding: 34px 24px 28px;
+  box-shadow: 0 16px 34px rgba(15, 45, 90, 0.08);
+}
+
+.about-page .about-values-icon {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(205, 221, 255, 0.82);
+  color: #0b64c8;
+  font-size: 1.5rem;
+}
+
+.about-page .about-values-card-title {
+  margin: 0 0 14px;
+  color: #0f5db8;
+  font-size: clamp(1.42rem, 1.15rem + 0.8vw, 1.86rem);
+  line-height: 1.22;
+}
+
+.about-page .about-values-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: #3f4f63;
+  font-size: 1.06rem;
+  line-height: 1.72;
+}
+
+.about-page .about-values-list li + li {
+  margin-top: 0.72rem;
+}
+
+/* About page layout utilities */
+.about-page .about-blue-title,
+.about-page .about-section-heading,
+.about-page .about-centered-title {
+  color: #005cbc;
+}
+
+.about-page .about-split {
+  align-items: center;
+}
+
+.about-page .about-content-card {
+  padding: 40px;
+}
+
+.about-page .about-section-heading {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.22;
+}
+
+.about-page .about-image-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.about-page .about-feature-image {
+  min-height: 420px;
+}
+
+.about-page .about-dovlon-image {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  width: 100%;
+}
+
+.about-page .about-centered-title {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.about-page .about-leader-grid {
+  margin-top: 32px;
+}
+
+.about-page .about-leader-photo {
+  object-position: center 22%;
+}
+
+@media (max-width: 1024px) {
+  .about-page .about-values-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .about-page .about-values-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  body.careers-page main {
-    display: block !important;
-    min-height: 0 !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding-bottom: 0 !important;
-    overflow-x: clip !important;
+  .about-page .about-values-card {
+    border-radius: 14px;
+    padding: 28px 18px 22px;
   }
 
-  body.careers-page .site-footer {
-    margin: 0 !important;
+  .about-page .about-values-icon {
+    width: 68px;
+    height: 68px;
+    margin-bottom: 22px;
   }
 
-  body.careers-page > .floating-actions,
-  body.careers-page .floating-actions {
-    position: fixed !important;
-    right: max(10px, env(safe-area-inset-right)) !important;
-    bottom: max(10px, env(safe-area-inset-bottom)) !important;
-    left: auto !important;
-    top: auto !important;
-    transform: none !important;
-    width: auto !important;
-    height: auto !important;
-    margin: 0 !important;
-    max-width: calc(100vw - 20px) !important;
-    z-index: 1500 !important;
+  .about-page .about-dovlon-image {
+    min-height: 0;
+    object-fit: contain;
+    background: #f5f7fb;
   }
+}
 
-  body.careers-page .floating-actions .btn-quote,
-  body.careers-page .floating-actions .quote-button {
-    max-width: min(164px, calc(100vw - 40px)) !important;
-  }
+/* Shared static replacements for former inline HTML styles */
+.hero-title-blue,
+.product-detail-heading,
+.product-tech-title,
+.project-insight-title {
+  color: #0b58b8;
+}
 
-  body.careers-page .careers-hero-gallery.is-mobile-carousel {
-    --m-gap: 12px;
-    --m-side: 16px;
-    --m-item: calc((100vw - (var(--m-side) * 2) - (var(--m-gap) * 2)) / 3);
-    padding-left: var(--m-side) !important;
-    padding-right: var(--m-side) !important;
-    overflow: hidden !important;
-    height: var(--m-item) !important;
-    min-height: var(--m-item) !important;
-    max-height: var(--m-item) !important;
-  }
+.hero-sub-narrow {
+  max-width: 760px;
+}
 
-  body.careers-page .careers-hero-gallery.is-mobile-carousel .careers-hero-carousel-track {
-    display: flex !important;
-    gap: var(--m-gap) !important;
-    align-items: stretch !important;
-    height: var(--m-item) !important;
-    min-height: var(--m-item) !important;
-  }
+.hero-sub-wide {
+  max-width: 860px;
+}
 
-  body.careers-page .careers-hero-gallery.is-mobile-carousel .careers-hero-carousel-item {
-    flex: 0 0 var(--m-item) !important;
-    width: var(--m-item) !important;
-    height: var(--m-item) !important;
-    min-height: var(--m-item) !important;
-    max-height: var(--m-item) !important;
-    aspect-ratio: 1 / 1 !important;
-    border-radius: 14px !important;
-    overflow: hidden !important;
-  }
+.product-detail-card {
+  padding: 28px;
+}
 
-  body.careers-page .careers-hero-gallery.is-mobile-carousel .careers-hero-carousel-item img {
-    width: 100% !important;
-    height: 100% !important;
-    display: block !important;
-    object-fit: cover !important;
-    object-position: center !important;
-  }
+.product-detail-image {
+  min-height: 340px;
+  border-radius: 12px;
+}
+
+.product-detail-heading {
+  margin: 0;
+  font-size: 1.9rem;
+}
+
+.product-tech-card {
+  padding: 24px;
+}
+
+.product-tech-title {
+  margin: 0;
+  font-size: 1.55rem;
+}
+
+.project-insight-card {
+  padding: 32px;
+}
+
+.project-insight-title {
+  margin: 0;
+  font-size: 1.9rem;
+  line-height: 1.25;
+}
+
+.project-insight-copy {
+  margin-top: 12px;
+}
+
+.project-insight-cta {
+  margin-top: 14px;
+}
+
+
+/* Final about values text alignment */
+.about-page .about-values-card-title {
+  text-align: center;
+}
+
+.about-page .about-values-list li {
+  text-align: justify;
+  text-justify: inter-word;
 }

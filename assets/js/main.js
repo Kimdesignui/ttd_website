@@ -603,3 +603,49 @@ if (document.readyState === "loading") {
     window._careersCarouselResizeTimer = setTimeout(refreshCareersCarousel, 140);
   });
 })();
+
+(function () {
+  function initCareersV2Gallery() {
+    var gallery = document.querySelector('[data-careers-v2-gallery]');
+    if (!gallery || gallery.dataset.v2Cloned === '1') return;
+
+    var originals = Array.from(gallery.children);
+    originals.forEach(function (node) {
+      var clone = node.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      gallery.appendChild(clone);
+    });
+    gallery.dataset.v2Cloned = '1';
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCareersV2Gallery);
+  } else {
+    initCareersV2Gallery();
+  }
+})();
+
+(function () {
+  function initCareersJobsAnchor() {
+    var target = document.getElementById("jobs-start");
+    var links = document.querySelectorAll('a[href="#jobs-start"]');
+    if (!target || !links.length) return;
+
+    links.forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, "", "#jobs-start");
+        }
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCareersJobsAnchor);
+  } else {
+    initCareersJobsAnchor();
+  }
+})();
