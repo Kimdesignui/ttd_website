@@ -2172,6 +2172,20 @@ body.careers-page main {
   box-shadow: var(--shadow-card-unified);
 }
 
+.product-catalog-media {
+  margin: 0 0 18px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.product-catalog-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
 .product-catalog-card h3 {
   margin: 0;
   font-size: 1.45rem;
@@ -2384,6 +2398,16 @@ body.careers-page main {
 .product-support-item {
   border-radius: 14px;
   padding: 26px 14px;
+}
+
+.product-support-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  margin: 0 0 18px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.76);
 }
 
 .product-support-item i {
@@ -3353,6 +3377,15 @@ body.careers-page main {
   background: rgba(206, 221, 255, 0.95);
   color: #0067d8;
   font-size: 1.38rem;
+}
+
+.product-accessory-tile img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.78);
 }
 
 .product-accessory-tile h3 {

@@ -5,7 +5,8 @@ function normalizePagePath(href) {
   if (!href) return "";
   try {
     const url = new URL(href, window.location.href);
-    let page = url.pathname.split("/").pop() || "index.html";
+    const segments = url.pathname.split("/").filter(Boolean);
+    let page = segments.pop() || "index.html";
     if (!page) page = "index.html";
     return page.toLowerCase();
   } catch {
@@ -602,27 +603,6 @@ if (document.readyState === "loading") {
     clearTimeout(window._careersCarouselResizeTimer);
     window._careersCarouselResizeTimer = setTimeout(refreshCareersCarousel, 140);
   });
-})();
-
-(function () {
-  function initCareersV2Gallery() {
-    var gallery = document.querySelector('[data-careers-v2-gallery]');
-    if (!gallery || gallery.dataset.v2Cloned === '1') return;
-
-    var originals = Array.from(gallery.children);
-    originals.forEach(function (node) {
-      var clone = node.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      gallery.appendChild(clone);
-    });
-    gallery.dataset.v2Cloned = '1';
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCareersV2Gallery);
-  } else {
-    initCareersV2Gallery();
-  }
 })();
 
 (function () {
