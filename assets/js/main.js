@@ -606,6 +606,27 @@ if (document.readyState === "loading") {
 })();
 
 (function () {
+  function initCareersV2Gallery() {
+    var gallery = document.querySelector('[data-careers-v2-gallery]');
+    if (!gallery || gallery.dataset.v2Cloned === '1') return;
+
+    var originals = Array.from(gallery.children);
+    originals.forEach(function (node) {
+      var clone = node.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      gallery.appendChild(clone);
+    });
+    gallery.dataset.v2Cloned = '1';
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCareersV2Gallery);
+  } else {
+    initCareersV2Gallery();
+  }
+})();
+
+(function () {
   function initCareersJobsAnchor() {
     var target = document.getElementById("jobs-start");
     var links = document.querySelectorAll('a[href="#jobs-start"]');
