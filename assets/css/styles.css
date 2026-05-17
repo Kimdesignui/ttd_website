@@ -2035,7 +2035,7 @@ body.careers-page main {
   display: flex;
   gap: 10px;
   align-items: center;
-  font-size: 13px;
+  font-size: 0.875rem;
   color: #667085;
 }
 
@@ -2224,6 +2224,11 @@ body.careers-page main {
   font-size: clamp(1.8rem, 2.8vw, 2.6rem);
   color: #0b58b8;
   letter-spacing: -0.02em;
+}
+
+.products-main > section:not(.page-hero) {
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
 }
 
 .product-hero-figma {
