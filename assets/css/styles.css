@@ -2164,7 +2164,14 @@ body.careers-page main {
   gap: 20px;
 }
 
+.product-catalog-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .product-catalog-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
   border-radius: 14px;
   padding: 22px;
   border: 1px solid var(--line);
@@ -2193,6 +2200,10 @@ body.careers-page main {
   color: #0b58b8;
 }
 
+.product-catalog-card .section-kicker {
+  margin: 0 0 8px;
+}
+
 .product-catalog-card p {
   margin: 0.8rem 0 0;
   color: #4b5563;
@@ -2201,6 +2212,7 @@ body.careers-page main {
 }
 
 .product-catalog-card .btn {
+  align-self: flex-start;
   margin-top: 1rem;
 }
 
@@ -2423,6 +2435,120 @@ body.careers-page main {
   color: #334155;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+.product-group-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.product-group-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.product-spec-card,
+.product-info-panel {
+  min-width: 0;
+  padding: 22px;
+  border-radius: 14px;
+}
+
+.product-spec-card {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.74fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.product-spec-card-wide {
+  grid-column: 1 / -1;
+}
+
+.product-spec-card img,
+.product-spec-visual {
+  width: 100%;
+  min-height: 240px;
+  border-radius: 12px;
+  background: rgba(245, 247, 252, 0.94);
+}
+
+.product-spec-card img {
+  object-fit: contain;
+}
+
+.product-spec-visual {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  border: 1px solid rgba(221, 228, 240, 0.92);
+}
+
+.product-spec-visual-text span {
+  color: #0b58b8;
+  font-size: clamp(1.55rem, 3vw, 2.4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.product-spec-body {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-spec-body .section-kicker {
+  margin-bottom: 8px;
+}
+
+.product-spec-body h2,
+.product-info-panel h2 {
+  margin: 0;
+  color: #0b58b8;
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+  line-height: 1.2;
+}
+
+.product-spec-body p,
+.product-detail-copy {
+  margin: 12px 0 0;
+  color: #4b5563;
+  font-size: 1rem;
+  line-height: 1.58;
+}
+
+.product-spec-list {
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  list-style: none;
+}
+
+.product-spec-list li {
+  position: relative;
+  padding-left: 20px;
+  color: #344054;
+  font-size: 0.98rem;
+  line-height: 1.52;
+}
+
+.product-spec-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0b58b8;
+}
+
+.product-info-panel {
+  background: rgba(245, 247, 252, 0.9);
+  border: 1px solid rgba(222, 229, 242, 0.9);
 }
 
 .card,
@@ -3352,6 +3478,10 @@ body.careers-page main {
   gap: 16px;
 }
 
+.product-accessories-visual-wide {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .product-accessory-tile {
   display: flex;
   min-height: 156px;
@@ -3436,6 +3566,35 @@ body.careers-page main {
 
   .product-accessory-tile {
     min-height: 132px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .product-accessories-visual-wide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-catalog-grid-3,
+  .product-group-grid,
+  .product-group-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .product-spec-card,
+  .product-spec-card-wide {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .product-spec-card img,
+  .product-spec-visual {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .product-accessories-visual-wide {
+    grid-template-columns: 1fr;
   }
 }
 
