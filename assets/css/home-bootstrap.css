@@ -190,7 +190,7 @@ body {
   font-size: clamp(2.25rem, 3.6vw, 3rem);
   line-height: 130%;
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
 }
 
 .hero-title span {
@@ -329,7 +329,7 @@ body {
 .section-title {
   color: var(--ttd-heading);
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   font-size: clamp(1.8rem, 2.2vw, 2rem);
 }
 
@@ -695,7 +695,7 @@ body {
   }
 
   .hero-title {
-    font-size: clamp(2rem, 5.2vw, 3rem);
+    font-size: 2.65rem;
   }
 
   .hero-sub {
@@ -747,15 +747,27 @@ body {
     min-height: 470px;
   }
 
+  .hero-panel-image {
+    object-position: center bottom;
+  }
+
+  .hero-panel-overlay {
+    background:
+      linear-gradient(180deg, rgba(239, 242, 247, 0.99) 0%, rgba(239, 242, 247, 0.97) 40%, rgba(239, 242, 247, 0.74) 58%, rgba(239, 242, 247, 0.28) 78%, rgba(239, 242, 247, 0) 100%),
+      radial-gradient(420px 260px at 50% 20%, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0) 70%);
+  }
+
   .hero-copy {
     min-height: 470px;
     max-width: 100%;
-    padding: 1.5rem 1.1rem;
+    padding: 2.6rem 1.1rem 1.5rem;
+    justify-content: flex-start;
     text-align: center;
   }
 
   .hero-title {
-    font-size: clamp(1.85rem, 8.6vw, 2.7rem);
+    font-size: 2.05rem;
+    line-height: 1.16;
   }
 
   .hero-sub {
@@ -820,5 +832,15 @@ body {
   .site-footer .btn-info,
   .site-footer .form-control {
     min-height: 54px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-title {
+    font-size: 1.86rem;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
   }
 }
