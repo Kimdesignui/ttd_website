@@ -1502,7 +1502,25 @@ body.careers-page main {
 }
 
 .news-page .news-main {
-  padding-top: 18px;
+  padding-top: 0;
+}
+
+.news-page .news-main > section {
+  padding-bottom: 2.25rem !important;
+}
+
+.news-page .news-main > section + section {
+  margin-top: 0;
+}
+
+.news-page .news-main > .page-hero {
+  padding-top: calc(var(--page-hero-top) * 0.78) !important;
+  padding-bottom: 2.5rem !important;
+}
+
+.news-page .news-main > section:first-child:not(.page-hero) {
+  padding-top: 2.5rem !important;
+  padding-bottom: 1.75rem !important;
 }
 
 .news-hero-inner {
