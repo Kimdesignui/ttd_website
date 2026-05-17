@@ -2366,6 +2366,13 @@ body.careers-page main {
   margin-top: 0;
 }
 
+.product-split-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 1.25rem;
+}
+
 .product-split-reverse .product-split-body h2 {
   max-width: 26rem;
 }
