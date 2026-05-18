@@ -17,9 +17,12 @@ function normalizePagePath(href) {
 function initNavActiveState() {
   const rawPage = normalizePagePath(window.location.href) || "index.html";
   let currentPage = rawPage;
-  if (rawPage.startsWith("news-")) currentPage = "news.html";
-  if (rawPage.startsWith("product-")) currentPage = "products.html";
-  if (rawPage.startsWith("career-")) currentPage = "careers.html";
+  const isDetailPage =
+    rawPage.startsWith("product-") ||
+    rawPage.startsWith("career-") ||
+    rawPage === "news-detail.html";
+  if (isDetailPage) currentPage = "";
+  else if (rawPage.startsWith("news-")) currentPage = "news.html";
   const navLinks = document.querySelectorAll(".menu a, .navbar-nav .nav-link");
   if (!navLinks.length) return;
 
@@ -58,7 +61,7 @@ function initDesktopMenuIndicator() {
   let indicator = null;
 
   const getActiveLink = () => {
-    return menuEl.querySelector("a.is-current, a.active") || links[0] || null;
+    return menuEl.querySelector("a.is-current, a.active");
   };
 
   const placeIndicator = (target, immediate = false) => {
@@ -101,6 +104,8 @@ function initDesktopMenuIndicator() {
     const activeLink = getActiveLink();
     if (activeLink) {
       placeIndicator(activeLink, immediate);
+    } else {
+      indicator.style.width = "0px";
     }
   };
 
@@ -120,6 +125,7 @@ function initDesktopMenuIndicator() {
     if (mobileMq.matches) return;
     const activeLink = getActiveLink();
     if (activeLink) placeIndicator(activeLink);
+    else if (indicator) indicator.style.width = "0px";
   });
 
   menuEl.addEventListener("focusout", () => {
@@ -128,6 +134,7 @@ function initDesktopMenuIndicator() {
       if (menuEl.contains(document.activeElement)) return;
       const activeLink = getActiveLink();
       if (activeLink) placeIndicator(activeLink);
+      else if (indicator) indicator.style.width = "0px";
     });
   });
 

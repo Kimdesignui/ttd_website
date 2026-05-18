@@ -2065,6 +2065,21 @@ body.careers-page main {
   font-size: 10px;
 }
 
+.page-hero:has(.news-breadcrumb) {
+  padding-top: 1.75rem !important;
+  padding-bottom: 2.25rem !important;
+}
+
+.page-hero:has(.news-breadcrumb) .news-breadcrumb,
+.news-page .news-main > section:first-child:has(.news-breadcrumb) .news-breadcrumb {
+  margin-bottom: 1.75rem !important;
+}
+
+.news-page .news-main > section:first-child:has(.news-breadcrumb) {
+  padding-top: 1.75rem !important;
+  padding-bottom: 1.75rem !important;
+}
+
 .news-detail-hero {
   padding: 28px;
   border-radius: 14px;
@@ -2492,7 +2507,7 @@ body.careers-page main {
 
 .product-group-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 
@@ -2509,8 +2524,8 @@ body.careers-page main {
 
 .product-spec-card {
   display: grid;
-  grid-template-columns: minmax(180px, 0.74fr) minmax(0, 1fr);
-  gap: 20px;
+  grid-template-columns: minmax(280px, 0.86fr) minmax(0, 1fr);
+  gap: 28px;
   align-items: stretch;
 }
 
@@ -2521,7 +2536,7 @@ body.careers-page main {
 .product-spec-card img,
 .product-spec-visual {
   width: 100%;
-  min-height: 240px;
+  min-height: 300px;
   border-radius: 12px;
   background: rgba(245, 247, 252, 0.94);
 }
@@ -2597,6 +2612,49 @@ body.careers-page main {
   height: 7px;
   border-radius: 50%;
   background: #0b58b8;
+}
+
+.product-spec-table-wrap {
+  margin-top: 18px;
+  overflow-x: auto;
+}
+
+.product-spec-table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  color: #1f2937;
+  font-size: 0.94rem;
+}
+
+.product-spec-table-compact {
+  min-width: 360px;
+}
+
+.product-spec-table caption {
+  caption-side: top;
+  margin-bottom: 10px;
+  color: #0b58b8;
+  font-size: 1rem;
+  font-weight: 800;
+  text-align: left;
+}
+
+.product-spec-table th,
+.product-spec-table td {
+  padding: 10px 12px;
+  border: 1px solid rgba(156, 168, 190, 0.72);
+  vertical-align: middle;
+}
+
+.product-spec-table th {
+  background: rgba(226, 235, 248, 0.72);
+  color: #344054;
+  font-weight: 800;
+}
+
+.product-spec-table td {
+  background: rgba(255, 255, 255, 0.44);
 }
 
 .product-info-panel {
@@ -3506,6 +3564,12 @@ body.careers-page main {
 .product-tech-title,
 .project-insight-title {
   color: #0b58b8;
+}
+
+.project-list-section {
+  padding-top: 0;
+  padding-bottom: 0;
+  background: transparent;
 }
 
 .hero-sub-narrow {
